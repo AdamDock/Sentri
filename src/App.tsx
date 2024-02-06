@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './templates/HomePage';
+import AboutUsPage from './templates/AboutUsPage';
+import ProductPage from './templates/ProductPage';
+import BlogPage from './templates/BlogPage';
+import NotFoundPage from './templates/NotFoundPage';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#085680', // Your custom color
+      },
+      secondary: {
+        main: '#032233', // Your custom color
+      },
+      text: {
+          primary: '#FFE999', // Your custom color
+          secondary: '#ffffff', // Your custom color
+      },
+    },
+  });
+
+const App = () => {
+    return (
+        <div>
+        <ThemeProvider theme={theme}>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/about" element={<AboutUsPage />} />
+                    <Route path="/Product" element={<ProductPage />} />
+                    <Route path="/Blog" element={<BlogPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+            </Router>
+        </ThemeProvider>
+            
+        </div>
+    );
 }
-
 export default App;
+
+
+
+
+
